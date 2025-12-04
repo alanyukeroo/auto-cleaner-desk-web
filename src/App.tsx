@@ -161,24 +161,24 @@ const Hero = () => {
                     </RetroFadeIn>
                     
                     <RetroFadeIn delay={200}>
-                        <h1 className="text-5xl md:text-7xl font-black leading-none text-[#1A1A1A] tracking-tighter">
+                        <h1 className="text-4xl md:text-7xl font-black leading-none text-[#1A1A1A] tracking-tighter">
                             CLEAN DESK.<br/>
                             <span className="bg-[#FFD000] px-2">CLEAR MIND.</span>
                         </h1>
                     </RetroFadeIn>
                     
                     <RetroFadeIn delay={300}>
-                        <p className="text-xl font-mono text-[#1A1A1A] max-w-lg leading-relaxed border-l-4 border-[#FFD000] pl-6">
+                        <p className="text-lg md:text-xl font-mono text-[#1A1A1A] max-w-lg leading-relaxed border-l-4 border-[#FFD000] pl-6">
                             Autonomous surface maintenance system. Monitors debris in real-time. Sweeps precisely.
                         </p>
                     </RetroFadeIn>
                     
                     <RetroFadeIn delay={400}>
                         <div className="flex flex-wrap gap-4">
-                            <a href="#process" className="bg-[#1A1A1A] text-[#FFD000] px-8 py-4 font-mono font-bold border-2 border-[#1A1A1A] hover:bg-[#FFD000] hover:text-[#1A1A1A] transition-all hover:shadow-[4px_4px_0px_0px_#1A1A1A] flex items-center gap-2">
+                            <a href="#process" className="bg-[#1A1A1A] text-[#FFD000] px-6 py-3 md:px-8 md:py-4 font-mono font-bold border-2 border-[#1A1A1A] hover:bg-[#FFD000] hover:text-[#1A1A1A] transition-all hover:shadow-[4px_4px_0px_0px_#1A1A1A] flex items-center gap-2">
                                 VIEW PROCESS <ArrowRight size={20} />
                             </a>
-                            <a href="#video" className="bg-transparent text-[#1A1A1A] px-8 py-4 font-mono font-bold border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-all hover:shadow-[4px_4px_0px_0px_#1A1A1A]">
+                            <a href="#video" className="bg-transparent text-[#1A1A1A] px-6 py-3 md:px-8 md:py-4 font-mono font-bold border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-all hover:shadow-[4px_4px_0px_0px_#1A1A1A]">
                                 WATCH DEMO
                             </a>
                         </div>
@@ -186,7 +186,7 @@ const Hero = () => {
                 </div>
                 
                 {/* Updated Animation based on user image */}
-                <RetroFadeIn delay={500} className="relative w-full aspect-square md:aspect-auto h-[500px]">
+                <RetroFadeIn delay={500} className="relative w-full aspect-square md:aspect-auto md:h-[500px]">
                     <div className="w-full h-full border-4 border-[#1A1A1A] bg-white relative overflow-hidden shadow-[8px_8px_0px_0px_#1A1A1A]">
                         <div className="absolute top-4 left-4 font-mono font-bold text-xs border border-[#1A1A1A] px-2 py-1 bg-[#F2F0E9]">
                             FIG 1.0: SWEEP ACTION
