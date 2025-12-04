@@ -10,9 +10,9 @@ import {
 // Color 2: #1A1A1A (Ink Black)
 // Color 3: #FFD000 (Safety Yellow)
 
-const RetroFadeIn = ({ children, delay = 0, className = "" }) => {
+const RetroFadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => {
     const [isVisible, setIsVisible] = useState(false);
-    const domRef = useRef();
+    const domRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
