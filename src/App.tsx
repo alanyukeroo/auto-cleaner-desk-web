@@ -491,36 +491,62 @@ const Process = ({ onImageClick }: { onImageClick: (src: string) => void }) => {
 };
 
 const ModelViewer = () => {
+    const models = [
+        {
+            title: "Main Assembly",
+            description: "Full CAD model of the SmartDesk Auto system.",
+            link: "https://a360.co/3Xi7vW3",
+            image: smartdesk09
+        },
+        {
+            title: "Waste Rack 1",
+            description: "Detailed view of the primary waste collection rack.",
+            link: "https://a360.co/4iE085n",
+            image: smartdesk09 // Using same placeholder for now, or could use a generic pattern
+        },
+        {
+            title: "Waste Rack 2",
+            description: "Detailed view of the secondary waste collection rack.",
+            link: "https://a360.co/4rKTwX2",
+            image: smartdesk09 // Using same placeholder for now
+        }
+    ];
+
     return (
         <section id="model" className="py-32 bg-[#F2F0E9] border-b-2 border-[#1A1A1A]">
             <div className="max-w-6xl mx-auto px-6">
-                <SectionHeader icon={Box} title="3D Model" subtitle="Interactive CAD View" />
+                <SectionHeader icon={Box} title="3D Models" subtitle="Interactive CAD Views" />
                 
-                <div className="w-full h-[600px] border-4 border-[#1A1A1A] bg-white shadow-[8px_8px_0px_0px_#1A1A1A] relative overflow-hidden">
-                    <iframe 
-                        src="https://myhub.autodesk360.com/ue29c89b7/shares/public/SHd38bfQT1fb47330c9900d2a6d90180206c?mode=embed" 
-                        width="100%" 
-                        height="100%" 
-                        allowFullScreen 
-                        frameBorder="0"
-                        title="Fusion 360 Model"
-                        className="w-full h-full"
-                    ></iframe>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {models.map((model, index) => (
+                        <div key={index} className="w-full h-[400px] border-4 border-[#1A1A1A] bg-white shadow-[8px_8px_0px_0px_#1A1A1A] relative overflow-hidden group">
+                            {/* Preview Image Background */}
+                            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${model.image})` }}></div>
+                            
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-[#1A1A1A]/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center transition-all duration-300 group-hover:bg-[#1A1A1A]/70">
+                                <Box size={48} className="text-[#FFD000] mb-4" strokeWidth={1.5} />
+                                <h3 className="text-2xl font-black text-white uppercase mb-3 tracking-tighter">
+                                    {model.title}
+                                </h3>
+                                <p className="font-mono text-[#F2F0E9] mb-6 text-sm leading-relaxed">
+                                    {model.description}
+                                </p>
+                                <a 
+                                    href={model.link}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="bg-[#FFD000] text-[#1A1A1A] px-6 py-3 font-mono font-bold border-2 border-white hover:bg-white hover:scale-105 transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_#F2F0E9] text-sm"
+                                >
+                                    LAUNCH VIEWER <ArrowRight size={16} />
+                                </a>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
-                <div className="mt-8 text-center">
-                    <p className="font-mono text-sm mb-4 text-[#1A1A1A]/70">
-                        *Use mouse to rotate, pan, and zoom.
-                    </p>
-                    <a 
-                        href="https://a360.co/3Xi7vW3" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#1A1A1A] text-[#F2F0E9] px-6 py-3 font-mono font-bold border-2 border-[#1A1A1A] hover:bg-[#FFD000] hover:text-[#1A1A1A] transition-all hover:shadow-[4px_4px_0px_0px_#1A1A1A]"
-                    >
-                        OPEN FULLSCREEN <ArrowRight size={16} />
-                    </a>
-                </div>
+                <p className="mt-8 text-center font-mono text-xs text-[#1A1A1A]/50">
+                    *Links open in a new tab via Autodesk Viewer
+                </p>
             </div>
         </section>
     );
