@@ -19,6 +19,23 @@ import print7 from './resource/print7.png';
 import print8 from './resource/print8.png';
 import print10 from './resource/print10.png';
 
+import mech1 from './resource/mech1.png';
+import mech2 from './resource/mech2.png';
+import mech3 from './resource/mech3.png';
+import mech4 from './resource/mech4.png';
+import mech5 from './resource/mech5.png';
+import mech6 from './resource/mech6.png';
+import mech7 from './resource/mech7.png';
+import mech8 from './resource/mech8.png';
+import mech9 from './resource/mech9.png';
+
+import smartdesk00 from './resource/smartdesk_1-00.png';
+import smartdesk01 from './resource/smartdesk_1-01.png';
+import smartdesk02 from './resource/smartdesk_1-02.png';
+import smartdesk07 from './resource/smartdesk_1-07.png';
+import smartdesk08 from './resource/smartdesk_1-08.png';
+import smartdesk09 from './resource/smartdesk_1-09.png';
+
 // --- Theme Constants (Strict 3-Color Palette) ---
 // Color 1: #F2F0E9 (Retro Off-White)
 // Color 2: #1A1A1A (Ink Black)
@@ -449,14 +466,14 @@ const Process = ({ onImageClick }: { onImageClick: (src: string) => void }) => {
             goal: "Drive System Testing",
             challenge: "Single-wheel drive unit suffered from sagging and jamming.",
             solution: "Installed stabilizer wheel and integrated physical limit switches.",
-            images: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=MECH+ASSEMBLY"
+            images: [mech1, mech2, mech3, mech4, mech5, mech6, mech7, mech8, mech9]
         },
         {
             title: "Final Integration",
             goal: "Automation Logic",
             challenge: "High friction coefficient in sliding mechanism.",
             solution: "Surface finishing (sanding) and specialized cleaning sponge integration.",
-            images: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=FINAL+DEVICE"
+            images: [smartdesk00, smartdesk01, smartdesk02, smartdesk07, smartdesk08, smartdesk09]
         }
     ];
 
@@ -627,7 +644,7 @@ export default function App() {
             
             <footer className="bg-[#F2F0E9] py-12 text-center border-t-4 border-[#1A1A1A]">
                 <p className="font-mono text-sm font-bold text-[#1A1A1A]">
-                    © 2025 TEAM 18 // ENGINEERING DEPT. <br/>
+                    © 2025 TEAM 18 - TECHIN 511 B - C9  <br/>
                     <span className="text-xs mt-2 block opacity-50">SYSTEM VERSION 1.0</span>
                 </p>
             </footer>
