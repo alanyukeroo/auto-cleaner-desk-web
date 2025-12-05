@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
     Menu, X, Wrench, Zap, Trash2, 
     Smartphone, CheckCircle, 
-    RefreshCw, ArrowRight, MousePointer 
+    RefreshCw, ArrowRight, MousePointer,
+    Box
 } from 'lucide-react';
 
 import sketch1 from './1.sketch1.png';
@@ -489,6 +490,42 @@ const Process = ({ onImageClick }: { onImageClick: (src: string) => void }) => {
     );
 };
 
+const ModelViewer = () => {
+    return (
+        <section id="model" className="py-32 bg-[#F2F0E9] border-b-2 border-[#1A1A1A]">
+            <div className="max-w-6xl mx-auto px-6">
+                <SectionHeader icon={Box} title="3D Model" subtitle="Interactive CAD View" />
+                
+                <div className="w-full h-[600px] border-4 border-[#1A1A1A] bg-white shadow-[8px_8px_0px_0px_#1A1A1A] relative overflow-hidden">
+                    <iframe 
+                        src="https://myhub.autodesk360.com/ue29c89b7/shares/public/SHd38bfQT1fb47330c9900d2a6d90180206c?mode=embed" 
+                        width="100%" 
+                        height="100%" 
+                        allowFullScreen 
+                        frameBorder="0"
+                        title="Fusion 360 Model"
+                        className="w-full h-full"
+                    ></iframe>
+                </div>
+
+                <div className="mt-8 text-center">
+                    <p className="font-mono text-sm mb-4 text-[#1A1A1A]/70">
+                        *Use mouse to rotate, pan, and zoom.
+                    </p>
+                    <a 
+                        href="https://a360.co/3Xi7vW3" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[#1A1A1A] text-[#F2F0E9] px-6 py-3 font-mono font-bold border-2 border-[#1A1A1A] hover:bg-[#FFD000] hover:text-[#1A1A1A] transition-all hover:shadow-[4px_4px_0px_0px_#1A1A1A]"
+                    >
+                        OPEN FULLSCREEN <ArrowRight size={16} />
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+};
+
 const TeamMember = ({ name, role, contribution, index, Face }) => (
     <RetroFadeIn delay={index * 100}>
         <div className="bg-white border-4 border-[#1A1A1A] p-0 h-full">
@@ -639,6 +676,7 @@ export default function App() {
             <Video />
             <Features />
             <Process onImageClick={setPreviewImage} />
+            <ModelViewer />
             <Team />
             <Future />
             
