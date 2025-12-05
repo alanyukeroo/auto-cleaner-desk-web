@@ -519,16 +519,17 @@ const Video = () => {
              <div className="max-w-5xl mx-auto px-6 text-center">
                 <h2 className="text-4xl font-black uppercase mb-12">System Demo</h2>
                 <div className="w-full bg-[#1A1A1A] p-2 shadow-[12px_12px_0px_0px_#FFD000]">
-                    <div className="aspect-video w-full bg-[#F2F0E9] flex items-center justify-center relative overflow-hidden group cursor-pointer border-2 border-[#F2F0E9]">
-                        {/* Placeholder for Video Embed */}
-                        <div className="text-center z-10">
-                            <div className="w-20 h-20 bg-[#1A1A1A] flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-[#FFD000] border-b-[10px] border-b-transparent ml-2"></div>
-                            </div>
-                            <p className="font-mono font-bold text-[#1A1A1A]">INITIATE PLAYBACK</p>
-                        </div>
-                        {/* Scanlines */}
-                        <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:10px_4px] pointer-events-none"></div>
+                    <div className="aspect-video w-full bg-[#F2F0E9] relative overflow-hidden border-2 border-[#F2F0E9]">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/200L2p9E47w" 
+                            title="SmartDesk Auto Demo" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowFullScreen
+                            className="absolute inset-0"
+                        ></iframe>
                     </div>
                 </div>
              </div>
