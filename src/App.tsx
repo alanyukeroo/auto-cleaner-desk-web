@@ -5,6 +5,20 @@ import {
     RefreshCw, ArrowRight, MousePointer 
 } from 'lucide-react';
 
+import sketch1 from './1.sketch1.png';
+import sketch2 from './2.sketch2.png';
+import sketch3 from './3.sketch3.png';
+
+import print1 from './resource/print1.png';
+import print2 from './resource/print2.png';
+import print3 from './resource/print3.png';
+import print4 from './resource/print4.png';
+import print5 from './resource/print5.png';
+import print6 from './resource/print6.png';
+import print7 from './resource/print7.png';
+import print8 from './resource/print8.png';
+import print10 from './resource/print10.png';
+
 // --- Theme Constants (Strict 3-Color Palette) ---
 // Color 1: #F2F0E9 (Retro Off-White)
 // Color 2: #1A1A1A (Ink Black)
@@ -350,77 +364,99 @@ const Features = () => {
     );
 };
 
-const ProcessStep = ({ title, goal, challenge, solution, image, index }) => (
-    <RetroFadeIn delay={index * 150} className="mb-12 last:mb-0">
-        <div className="flex flex-col md:flex-row gap-8">
-            <div className="w-full md:w-32 shrink-0">
-                <div className="font-black text-5xl text-[#1A1A1A] mb-2">0{index + 1}</div>
-                <div className="h-4 w-full bg-[#FFD000] border-2 border-[#1A1A1A]"></div>
-            </div>
-            <div className="grow border-l-4 border-[#1A1A1A] pl-8 pb-2">
-                <h3 className="font-black text-3xl uppercase mb-6">{title}</h3>
-                
-                {/* Image Placeholder */}
-                <div className="mb-6 border-4 border-[#1A1A1A] bg-white p-2 shadow-[8px_8px_0px_0px_#1A1A1A] group">
-                    <img 
-                        src={image} 
-                        alt={`Process Snapshot ${index + 1}`} 
-                        className="w-full h-48 md:h-64 object-cover grayscale group-hover:grayscale-0 transition-all duration-300 border border-[#1A1A1A]" 
-                    />
-                    <div className="mt-2 flex justify-between items-center px-2">
-                        <span className="font-mono text-xs font-bold text-[#1A1A1A] uppercase">Fig {index + 1}.0</span>
-                        <span className="font-mono text-xs text-[#1A1A1A] opacity-50">SOURCE: ARCHIVE</span>
-                    </div>
-                </div>
-                
-                <div className="grid gap-6">
-                    <div className="bg-white border-2 border-[#1A1A1A] p-4">
-                        <span className="font-bold bg-[#1A1A1A] text-white px-2 py-1 text-xs uppercase mb-2 inline-block">Goal</span>
-                        <p className="font-mono text-sm">{goal}</p>
-                    </div>
-                    <div className="bg-white border-2 border-[#1A1A1A] p-4">
-                        <span className="font-bold bg-white text-[#1A1A1A] border border-[#1A1A1A] px-2 py-1 text-xs uppercase mb-2 inline-block">Challenge</span>
-                        <p className="font-mono text-sm">{challenge}</p>
-                    </div>
-                    <div className="bg-[#FFD000] border-2 border-[#1A1A1A] p-4 shadow-[4px_4px_0px_0px_#1A1A1A]">
-                        <span className="font-bold bg-[#1A1A1A] text-[#FFD000] px-2 py-1 text-xs uppercase mb-2 inline-block">Resolution</span>
-                        <p className="font-mono text-sm font-bold">{solution}</p>
-                    </div>
-                </div>
+const ImageModal = ({ src, onClose }: { src: string | null, onClose: () => void }) => {
+    if (!src) return null;
+    return (
+        <div className="fixed inset-0 z-[100] bg-[#1A1A1A]/90 flex items-center justify-center p-4" onClick={onClose}>
+            <div className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
+                <img src={src} alt="Full Preview" className="max-w-full max-h-full object-contain border-4 border-[#F2F0E9]" />
+                <button onClick={onClose} className="absolute top-4 right-4 text-[#F2F0E9] hover:text-[#FFD000]">
+                    <X size={48} strokeWidth={3} />
+                </button>
             </div>
         </div>
-    </RetroFadeIn>
-);
+    );
+};
 
-const Process = () => {
+const ProcessStep = ({ title, goal, challenge, solution, images, index, onImageClick }) => {
+    const imageList = Array.isArray(images) ? images : [images];
+
+    return (
+        <RetroFadeIn delay={index * 150} className="mb-12 last:mb-0">
+            <div className="flex flex-col md:flex-row gap-8">
+                <div className="w-full md:w-32 shrink-0">
+                    <div className="font-black text-5xl text-[#1A1A1A] mb-2">0{index + 1}</div>
+                    <div className="h-4 w-full bg-[#FFD000] border-2 border-[#1A1A1A]"></div>
+                </div>
+                <div className="grow border-l-4 border-[#1A1A1A] pl-8 pb-2">
+                    <h3 className="font-black text-3xl uppercase mb-6">{title}</h3>
+                    
+                    {/* Image Gallery */}
+                    <div className={`mb-6 grid gap-4 ${imageList.length > 1 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1'}`}>
+                        {imageList.map((img, i) => (
+                            <div key={i} className="border-4 border-[#1A1A1A] bg-white p-2 shadow-[8px_8px_0px_0px_#1A1A1A] group cursor-pointer hover:scale-[1.02] transition-transform" onClick={() => onImageClick(img)}>
+                                <img 
+                                    src={img} 
+                                    alt={`Process Snapshot ${index + 1}.${i}`} 
+                                    className={`w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 border border-[#1A1A1A] ${imageList.length > 1 ? 'h-32' : 'h-48 md:h-64'}`} 
+                                />
+                                <div className="mt-2 flex justify-between items-center px-2">
+                                    <span className="font-mono text-xs font-bold text-[#1A1A1A] uppercase">Fig {index + 1}.{i}</span>
+                                    <span className="font-mono text-xs text-[#1A1A1A] opacity-50">CLICK TO EXPAND</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    
+                    <div className="grid gap-6">
+                        <div className="bg-white border-2 border-[#1A1A1A] p-4">
+                            <span className="font-bold bg-[#1A1A1A] text-white px-2 py-1 text-xs uppercase mb-2 inline-block">Goal</span>
+                            <p className="font-mono text-sm">{goal}</p>
+                        </div>
+                        <div className="bg-white border-2 border-[#1A1A1A] p-4">
+                            <span className="font-bold bg-white text-[#1A1A1A] border border-[#1A1A1A] px-2 py-1 text-xs uppercase mb-2 inline-block">Challenge</span>
+                            <p className="font-mono text-sm">{challenge}</p>
+                        </div>
+                        <div className="bg-[#FFD000] border-2 border-[#1A1A1A] p-4 shadow-[4px_4px_0px_0px_#1A1A1A]">
+                            <span className="font-bold bg-[#1A1A1A] text-[#FFD000] px-2 py-1 text-xs uppercase mb-2 inline-block">Resolution</span>
+                            <p className="font-mono text-sm font-bold">{solution}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </RetroFadeIn>
+    );
+};
+
+const Process = ({ onImageClick }: { onImageClick: (src: string) => void }) => {
     const steps = [
         {
             title: "Concept & Ideation",
             goal: "Initial System Generation",
             challenge: "Individual part design (wheels, cleaner, slider) lacked integration logic.",
             solution: "Redesigned with the middle stretch unit as the central control chassis.",
-            image: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=SKETCH+PHASE"
+            images: [sketch1, sketch2, sketch3]
         },
         {
             title: "Prototype I: Scale",
             goal: "Dimension Verification",
             challenge: "PLA material shrinkage in 3D printing caused assembly failure.",
             solution: "Recalibrated CAD tolerances to account for thermal contraction.",
-            image: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=3D+PRINT+TEST"
+            images: [print1, print2, print3, print4, print5, print6, print7, print8, print10]
         },
         {
             title: "Prototype II: Mech",
             goal: "Drive System Testing",
             challenge: "Single-wheel drive unit suffered from sagging and jamming.",
             solution: "Installed stabilizer wheel and integrated physical limit switches.",
-            image: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=MECH+ASSEMBLY"
+            images: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=MECH+ASSEMBLY"
         },
         {
             title: "Final Integration",
             goal: "Automation Logic",
             challenge: "High friction coefficient in sliding mechanism.",
             solution: "Surface finishing (sanding) and specialized cleaning sponge integration.",
-            image: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=FINAL+DEVICE"
+            images: "https://placehold.co/600x400/e2e2e2/1A1A1A?text=FINAL+DEVICE"
         }
     ];
 
@@ -429,7 +465,7 @@ const Process = () => {
             <div className="max-w-4xl mx-auto px-6">
                 <SectionHeader icon={Wrench} title="Dev Log" subtitle="Iterative Engineering Process" />
                 <div>
-                    {steps.map((step, i) => <ProcessStep key={i} index={i} {...step} />)}
+                    {steps.map((step, i) => <ProcessStep key={i} index={i} {...step} onImageClick={onImageClick} />)}
                 </div>
             </div>
         </section>
@@ -538,6 +574,8 @@ const Video = () => {
 }
 
 export default function App() {
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
+
     return (
         <div className="min-h-screen bg-[#F2F0E9] text-[#1A1A1A] font-sans selection:bg-[#FFD000] selection:text-[#1A1A1A]">
             <style>{`
@@ -583,7 +621,7 @@ export default function App() {
             <Overview />
             <Video />
             <Features />
-            <Process />
+            <Process onImageClick={setPreviewImage} />
             <Team />
             <Future />
             
@@ -593,6 +631,8 @@ export default function App() {
                     <span className="text-xs mt-2 block opacity-50">SYSTEM VERSION 1.0</span>
                 </p>
             </footer>
+
+            <ImageModal src={previewImage} onClose={() => setPreviewImage(null)} />
         </div>
     );
 };
